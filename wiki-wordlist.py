@@ -14,6 +14,9 @@ if len(argv) < 2:
 	exit()
 if len(argv) == 3:
 	words_to_output = int(argv[2])
+	if words_to_output < 1:
+		print('Error: The number of words to output must be more than 0')
+		exit()
 
 punc = '=|'
 
@@ -24,8 +27,12 @@ for i in range(maxunicode):
 punctuation = set(punc)
 punctuation.remove("'")
 
-with open(argv[1]) as xmlfile:
-	xml = xmlfile.read()
+try:
+	with open(argv[1]) as xmlfile:
+		xml = xmlfile.read()
+except IOError:
+	print('Error: {:s} could not be read'.format(argv[1]))
+	exit()
 
 soup = BeautifulSoup(xml, 'lxml')
 text_tags = soup.find_all('text')
