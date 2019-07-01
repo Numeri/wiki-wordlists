@@ -18,7 +18,7 @@ if len(argv) == 3:
 		print('Error: The number of words to output must be more than 0')
 		exit()
 
-punc = '=|'
+punc = '=|+<>'
 
 for i in range(maxunicode):
 	char = chr(i)
