@@ -43,7 +43,7 @@ for tag in text_tags:
 	text += tag.get_text()
 
 whitespace_regex = regex.compile('\s+')
-triplequotes_regex = regex.compile(r'\'\'\'')
+quotes_regex = regex.compile(r'\'\'\'?')
 cleanup_regex = regex.compile(r"""\[\[.+\]\]|\{\{.+\}\}		# markup tags like [[]] or {{}}
                                   | (\n|^)[ |*{!=}].*		# tables, links and headers
                                   | <.*>.*</.*>			# reference tags
@@ -53,7 +53,7 @@ cleanup_regex = regex.compile(r"""\[\[.+\]\]|\{\{.+\}\}		# markup tags like [[]]
                                """, regex.VERBOSE)
 
 text = cleanup_regex.sub('', text)
-text = triplequotes_regex.sub(' ', text)
+text = quotes_regex.sub(' ', text)
 text = ''.join([ch for ch in text if ch not in punctuation])
 text = whitespace_regex.sub('\n', text)
 
