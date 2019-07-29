@@ -70,9 +70,6 @@ quotes_regex = regex.compile(r'\'\'\'?')
 cleanup_regex = regex.compile(r"""\[\[.+?\]\]|\{\{.+?\}\}	# markup tags like [[]] or {{}}
                                   | ^[ |*{!=}].*?$		# tables, links and headers
 				  | <!--.*?-->			# comment tags
-                                  | <.*?>.*?</.*?>		# reference tags
-                                  | <.*?>.*?$			# reference tags spanning a line
-                                  | .*?</.*?>			# reference tags spanning a line
                                   | &lt;.*?&gt;.*?&lt;/.*?&gt;	# reference tags
                                   | &lt;.*?&gt;.*?\n		# reference tags spanning a line
                                   | .*?&lt;/.*?&gt;		# reference tags spanning a line
